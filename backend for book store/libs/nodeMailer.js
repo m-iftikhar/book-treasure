@@ -8,14 +8,14 @@ const sendEmail = asyncHandler(async(data, req, res)=>{
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "faisalgojra339@gmail.com",
+        user: "iftikharrj2001@gmail.com",
         pass: "ieru xuyc xrvf pauu",
       },
     });
   
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: "faisalgojra339@gmail.com", // sender address
+      from: "iftikharrj2001@gmail.com", // sender address
       to: data.to, // list of receivers
       subject: data.subject, // Subject line
       text: data.text,
