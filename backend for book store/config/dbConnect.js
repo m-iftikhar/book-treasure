@@ -1,10 +1,18 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 const dbConnection = async () => {
-    const mongooseUrl = "mongodb://zunairtechmaestro:UtTUYYJ1IaWv36kn@ac-ehxj0uz-shard-00-00.w0zlx8a.mongodb.net:27017,ac-ehxj0uz-shard-00-01.w0zlx8a.mongodb.net:27017,ac-ehxj0uz-shard-00-02.w0zlx8a.mongodb.net:27017/book_store?ssl=true&authSource=admin&retryWrites=true&w=majority";
+    // Use the MongoDB URI from the environment variable
+    const mongooseUrl = process.env.MONGODB_URI;
 
     try {
-        await mongoose.connect(mongooseUrl);
+        await mongoose.connect(mongooseUrl, {
+            useNewUrlParser: true, // Optional: recommended for newer MongoDB drivers
+            useUnifiedTopology: true, // Optional: recommended to handle MongoDB server discovery
+        });
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Could not connect to MongoDB:", error);

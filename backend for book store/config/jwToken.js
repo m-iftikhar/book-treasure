@@ -1,8 +1,13 @@
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const generateToken = (id)=>{
-    let token = jwt.sign({id}, "bookStorekey", {expiresIn: "1d"});
+// Load environment variables from .env file
+dotenv.config();
+
+const generateToken = (id) => {
+    // Use the secret key from process.env
+    let token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
     return token;
 }
 
-export default generateToken
+export default generateToken;
